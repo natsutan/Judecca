@@ -5,9 +5,9 @@ open tokenizer
 
 [<Test>]
 let tokenizer_test0() = 
-    let s = "1 2 3"
+    let s = "1 2 3　4"
     let result = tokenizer.tokenize s
-    Assert.AreEqual(result, ["1";"2";"3"])
+    Assert.AreEqual(result, ["1";"2";"3";"4"])
 
 [<EntryPoint>]
 let main argv = 
