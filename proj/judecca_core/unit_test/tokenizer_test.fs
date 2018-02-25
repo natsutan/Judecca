@@ -9,11 +9,13 @@ type token_test_data(indata:string, expected:string list) =
     member this.indata = _indata
     member this.expected = _expected
 
-
 let test1 = token_test_data("A 2 3 4" , ["A";"2";"3";"4"])
-let test2 = token_test_data("1 2" , ["1";"2"])
+let test2 = token_test_data("1 2 " , ["1";"2"])
+let test3 = token_test_data("input: \"1\"\n" , ["input:";"\"1\""])
+let test4 = token_test_data("\"1 2 \"\n" , ["\"1 2 \""])
+let test5 = token_test_data("attribute {\n  name: \"kernel_shape\"\n  ints: 3\n ints: 3\n type: INTS\n  }" , ["attribute"; "{"; "name:"; "\"kernel_shape\""; "ints:" ; "3" ; "ints:"; "3" ; "type:"; "INTS"; "}"])
 
-let token_test_sorces = [test1; test2]
+let token_test_sorces = [test1; test2; test3; test4; test5]
 
 [<TestCaseSource("token_test_sorces")>]
 let tokenizer_test0(pair:token_test_data) = 

@@ -1,0 +1,16 @@
+let s = ".exe;.com;.bat".Split(';')
+
+Array.toList s
+
+let a = [1;2;3]
+let b = [|1;2;3|]
+
+["1";"2";"3";"4"]
+
+let c = 'A'
+
+c.ToString()
+
+a.Append(1)
+
+List.Append(a1)
