@@ -1,0 +1,879 @@
+name: "1"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 1
+      }
+      dim {
+        dim_value: 3
+      }
+      dim {
+        dim_value: 224
+      }
+      dim {
+        dim_value: 224
+      }
+    }
+  }
+}
+
+name: "2"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 64
+      }
+      dim {
+        dim_value: 3
+      }
+      dim {
+        dim_value: 3
+      }
+      dim {
+        dim_value: 3
+      }
+    }
+  }
+}
+
+name: "3"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 64
+      }
+    }
+  }
+}
+
+name: "4"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 16
+      }
+      dim {
+        dim_value: 64
+      }
+      dim {
+        dim_value: 1
+      }
+      dim {
+        dim_value: 1
+      }
+    }
+  }
+}
+
+name: "5"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 16
+      }
+    }
+  }
+}
+
+name: "6"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 64
+      }
+      dim {
+        dim_value: 16
+      }
+      dim {
+        dim_value: 1
+      }
+      dim {
+        dim_value: 1
+      }
+    }
+  }
+}
+
+name: "7"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 64
+      }
+    }
+  }
+}
+
+name: "8"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 64
+      }
+      dim {
+        dim_value: 16
+      }
+      dim {
+        dim_value: 3
+      }
+      dim {
+        dim_value: 3
+      }
+    }
+  }
+}
+
+name: "9"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 64
+      }
+    }
+  }
+}
+
+name: "10"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 16
+      }
+      dim {
+        dim_value: 128
+      }
+      dim {
+        dim_value: 1
+      }
+      dim {
+        dim_value: 1
+      }
+    }
+  }
+}
+
+name: "11"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 16
+      }
+    }
+  }
+}
+
+name: "12"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 64
+      }
+      dim {
+        dim_value: 16
+      }
+      dim {
+        dim_value: 1
+      }
+      dim {
+        dim_value: 1
+      }
+    }
+  }
+}
+
+name: "13"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 64
+      }
+    }
+  }
+}
+
+name: "14"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 64
+      }
+      dim {
+        dim_value: 16
+      }
+      dim {
+        dim_value: 3
+      }
+      dim {
+        dim_value: 3
+      }
+    }
+  }
+}
+
+name: "15"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 64
+      }
+    }
+  }
+}
+
+name: "16"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 32
+      }
+      dim {
+        dim_value: 128
+      }
+      dim {
+        dim_value: 1
+      }
+      dim {
+        dim_value: 1
+      }
+    }
+  }
+}
+
+name: "17"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 32
+      }
+    }
+  }
+}
+
+name: "18"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 128
+      }
+      dim {
+        dim_value: 32
+      }
+      dim {
+        dim_value: 1
+      }
+      dim {
+        dim_value: 1
+      }
+    }
+  }
+}
+
+name: "19"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 128
+      }
+    }
+  }
+}
+
+name: "20"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 128
+      }
+      dim {
+        dim_value: 32
+      }
+      dim {
+        dim_value: 3
+      }
+      dim {
+        dim_value: 3
+      }
+    }
+  }
+}
+
+name: "21"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 128
+      }
+    }
+  }
+}
+
+name: "22"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 32
+      }
+      dim {
+        dim_value: 256
+      }
+      dim {
+        dim_value: 1
+      }
+      dim {
+        dim_value: 1
+      }
+    }
+  }
+}
+
+name: "23"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 32
+      }
+    }
+  }
+}
+
+name: "24"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 128
+      }
+      dim {
+        dim_value: 32
+      }
+      dim {
+        dim_value: 1
+      }
+      dim {
+        dim_value: 1
+      }
+    }
+  }
+}
+
+name: "25"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 128
+      }
+    }
+  }
+}
+
+name: "26"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 128
+      }
+      dim {
+        dim_value: 32
+      }
+      dim {
+        dim_value: 3
+      }
+      dim {
+        dim_value: 3
+      }
+    }
+  }
+}
+
+name: "27"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 128
+      }
+    }
+  }
+}
+
+name: "28"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 48
+      }
+      dim {
+        dim_value: 256
+      }
+      dim {
+        dim_value: 1
+      }
+      dim {
+        dim_value: 1
+      }
+    }
+  }
+}
+
+name: "29"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 48
+      }
+    }
+  }
+}
+
+name: "30"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 192
+      }
+      dim {
+        dim_value: 48
+      }
+      dim {
+        dim_value: 1
+      }
+      dim {
+        dim_value: 1
+      }
+    }
+  }
+}
+
+name: "31"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 192
+      }
+    }
+  }
+}
+
+name: "32"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 192
+      }
+      dim {
+        dim_value: 48
+      }
+      dim {
+        dim_value: 3
+      }
+      dim {
+        dim_value: 3
+      }
+    }
+  }
+}
+
+name: "33"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 192
+      }
+    }
+  }
+}
+
+name: "34"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 48
+      }
+      dim {
+        dim_value: 384
+      }
+      dim {
+        dim_value: 1
+      }
+      dim {
+        dim_value: 1
+      }
+    }
+  }
+}
+
+name: "35"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 48
+      }
+    }
+  }
+}
+
+name: "36"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 192
+      }
+      dim {
+        dim_value: 48
+      }
+      dim {
+        dim_value: 1
+      }
+      dim {
+        dim_value: 1
+      }
+    }
+  }
+}
+
+name: "37"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 192
+      }
+    }
+  }
+}
+
+name: "38"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 192
+      }
+      dim {
+        dim_value: 48
+      }
+      dim {
+        dim_value: 3
+      }
+      dim {
+        dim_value: 3
+      }
+    }
+  }
+}
+
+name: "39"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 192
+      }
+    }
+  }
+}
+
+name: "40"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 64
+      }
+      dim {
+        dim_value: 384
+      }
+      dim {
+        dim_value: 1
+      }
+      dim {
+        dim_value: 1
+      }
+    }
+  }
+}
+
+name: "41"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 64
+      }
+    }
+  }
+}
+
+name: "42"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 256
+      }
+      dim {
+        dim_value: 64
+      }
+      dim {
+        dim_value: 1
+      }
+      dim {
+        dim_value: 1
+      }
+    }
+  }
+}
+
+name: "43"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 256
+      }
+    }
+  }
+}
+
+name: "44"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 256
+      }
+      dim {
+        dim_value: 64
+      }
+      dim {
+        dim_value: 3
+      }
+      dim {
+        dim_value: 3
+      }
+    }
+  }
+}
+
+name: "45"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 256
+      }
+    }
+  }
+}
+
+name: "46"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 64
+      }
+      dim {
+        dim_value: 512
+      }
+      dim {
+        dim_value: 1
+      }
+      dim {
+        dim_value: 1
+      }
+    }
+  }
+}
+
+name: "47"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 64
+      }
+    }
+  }
+}
+
+name: "48"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 256
+      }
+      dim {
+        dim_value: 64
+      }
+      dim {
+        dim_value: 1
+      }
+      dim {
+        dim_value: 1
+      }
+    }
+  }
+}
+
+name: "49"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 256
+      }
+    }
+  }
+}
+
+name: "50"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 256
+      }
+      dim {
+        dim_value: 64
+      }
+      dim {
+        dim_value: 3
+      }
+      dim {
+        dim_value: 3
+      }
+    }
+  }
+}
+
+name: "51"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 256
+      }
+    }
+  }
+}
+
+name: "52"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 1000
+      }
+      dim {
+        dim_value: 512
+      }
+      dim {
+        dim_value: 1
+      }
+      dim {
+        dim_value: 1
+      }
+    }
+  }
+}
+
+name: "53"
+type {
+  tensor_type {
+    elem_type: FLOAT
+    shape {
+      dim {
+        dim_value: 1000
+      }
+    }
+  }
+}
+

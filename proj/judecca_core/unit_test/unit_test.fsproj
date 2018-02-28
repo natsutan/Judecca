@@ -55,6 +55,7 @@
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
+    <Compile Include="parser_Test.fs" />
     <Compile Include="tokenizer_test.fs" />
     <None Include="App.config" />
     <Content Include="packages.config" />

@@ -3,6 +3,8 @@
 open NUnit.Framework
 open tokenizer
 
+open parser_Test
+
 type token_test_data(indata:string, expected:string list) =
     let _indata = indata
     let _expected = expected
@@ -22,6 +24,8 @@ let tokenizer_test0(pair:token_test_data) =
     let result = tokenizer.tokenize pair.indata
     Assert.AreEqual(result,  pair.expected)
 
+let result = TokenStreamTest()
+ 
 [<EntryPoint>]
 let main argv = 
     printfn "%A" argv
