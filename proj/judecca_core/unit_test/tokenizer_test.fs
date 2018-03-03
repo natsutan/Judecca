@@ -1,9 +1,9 @@
-﻿// F# の詳細については、http://fsharp.org を参照してください
+﻿module tokenizer_Test
+// F# の詳細については、http://fsharp.org を参照してください
 // 詳細については、'F# チュートリアル' プロジェクトを参照してください。
+
 open NUnit.Framework
 open tokenizer
-
-open parser_Test
 
 type token_test_data(indata:string, expected:string list) =
     let _indata = indata
@@ -24,9 +24,5 @@ let tokenizer_test0(pair:token_test_data) =
     let result = tokenizer.tokenize pair.indata
     Assert.AreEqual(result,  pair.expected)
 
-let result = TokenStreamTest()
+
  
-[<EntryPoint>]
-let main argv = 
-    printfn "%A" argv
-    0 // 整数の終了コードを返します
