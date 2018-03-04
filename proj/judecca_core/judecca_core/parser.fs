@@ -294,6 +294,9 @@ let make_attribute_int(name : string, i: int ) : ATTRIBUTE =
     | "aixs" -> AIXS(i)
     | _ -> raise(ParseError(name))
       
+let removeDQs(s:string) : string =
+  let l = String.length s
+  s.Substring(1,l-2)
 
 
 let parse_net_core(ts:TokenStream, g : OGRAPH) : OGRAPH =
@@ -309,18 +312,18 @@ let parse_net_core(ts:TokenStream, g : OGRAPH) : OGRAPH =
                 graph <- graph_add_new_node(graph, node)
                 op_type_done <- false
                 node <- init_onode
-            let v = ts.get() |> int
+            let v = ts.get() |> removeDQs |> int
             node <- node_add_inputs(node, v)
         | "output:" ->
-            let v = ts.get() |> int
+            let v = ts.get() |> removeDQs |> int
             node <- node_add_outputs(node, v)
         | "op_type:" ->
             op_type_done <- true
-            let op = ts.get() |> toOptype
+            let op = ts.get() |> removeDQs |> toOptype
             node <- node_set_optype(node, op)
         | "attribute" ->
             ts.get() |> ignore // '{' を捨てる。
-            let name = ts.get()
+            let name = ts.get() |> removeDQs
             match name with
             | "kernel_shape" | "strides" | "pads" | "dilations"  -> 
                 let mutable ints : int list = []

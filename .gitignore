@@ -260,3 +260,6 @@ paket-files/
 __pycache__/
 *.pyc
 /tmp/tmp.fs
+tmp/#tmp.fs#
+tmp/.#tmp.fs
+tmp/#tmp.fs#
