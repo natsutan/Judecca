@@ -108,7 +108,7 @@ type ParserTest () =
                 "doc_string:" ; "\"abc\"" ;
                 "attribute" ; "{" ; "name:" ; "\"kernel_shape\"" ; "ints:" ; "3" ; "ints:" ; "3" ;"type:" ; "INTS" ; "}"
                 ])
-            let expected_attr : ATTRIBUTE = make_attribute_ints( "\"kernel_shape\"", [3;3])
+            let expected_attr : ATTRIBUTE = make_attribute_ints( "kernel_shape", [3;3])
             let expected_0 : ONODE = {
                 inputs=[1] ; outputs = [55] ; optype = Conv ; doc_string = "abc" ; 
                 attributes = [expected_attr] 

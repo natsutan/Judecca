@@ -19,6 +19,7 @@ let test5 = token_test_data("attribute {\n  name: \"kernel_shape\"\n  ints: 3\n 
 
 let token_test_sorces = [test1; test2; test3; test4; test5]
 
+[<Category("tokenizer")>]
 [<TestCaseSource("token_test_sorces")>]
 let tokenizer_test0(pair:token_test_data) = 
     let result = tokenizer.tokenize pair.indata

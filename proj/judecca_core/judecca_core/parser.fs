@@ -321,20 +321,27 @@ let parse_net_core(ts:TokenStream, g : OGRAPH) : OGRAPH =
             op_type_done <- true
             let op = ts.get() |> removeDQs |> toOptype
             node <- node_set_optype(node, op)
+        | "doc_string:" ->
+            let ds = ts.get() |> removeDQs
+            node <- node_set_docstr(node, ds)
         | "attribute" ->
             ts.get() |> ignore // '{' を捨てる。
+            let name_e = ts.get() 
+            if name_e <> "name:" then
+                raise(ParseError(name_e))
             let name = ts.get() |> removeDQs
-            match name with
+            match name with 
             | "kernel_shape" | "strides" | "pads" | "dilations"  -> 
                 let mutable ints : int list = []
                 let mutable at = ts.get()
-                while at <> "type" do
+                while at <> "type:" do
                     match at with
-                    | "ints" ->             
+                    | "ints:" ->             
                         let v = ts.get() |> int
                         ints <- ints @ [v]
                         at <- ts.get()
                     | _ -> raise (ParseError(at))
+
                 let type_s = ts.get() |> toOtype
                 let attr = make_attribute_ints(name, ints)
                 node <- node_add_attributes(node, attr)
@@ -346,6 +353,8 @@ let parse_net_core(ts:TokenStream, g : OGRAPH) : OGRAPH =
                 node <- node_add_attributes(node, attr)
                 ts.get() |> ignore // '}' を捨てる。
             | _ -> raise (ParseError(name))
+          
+
         | _ -> raise(ParseError(t))
 
         t <- ts.get()
