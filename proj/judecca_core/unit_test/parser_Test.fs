@@ -1,6 +1,7 @@
 ﻿module parser_Test
 
 open NUnit.Framework
+open tokenizer
 open parser
 
 
@@ -84,13 +85,50 @@ type OnodeTest () =
 
     end
 
+let input_text0 = "input: \"1\"
+input: \"2\"
+output: \"55\"
+op_type: \"Conv\"
+attribute {
+  name: \"kernel_shape\"
+  ints: 3
+  ints: 3
+  type: INTS
+}
+attribute {
+  name: \"strides\"
+  ints: 2
+  ints: 2
+  type: INTS
+}
+attribute {
+  name: \"pads\"
+  ints: 0
+  ints: 0
+  ints: 0
+  ints: 0
+  type: INTS
+}
+attribute {
+  name: \"dilations\"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: \"group\"
+  i: 1
+  type: INT
+}
+"
+
 
 [<TestFixture>]
-[<Category("Parser")>]
-type ParserTest () = 
+[<Category("ParserNet")>]
+type ParserNetTest () = 
     class
         [<Test>]
-        member public this.parser_test0() =
+        member public this.parser_net_test0() =
             let test_ts0 = TokenStream(["input:"; "\"1\"";"op_type:"; "\"Conv\""])
             let expecetd_0 : ONODE = {
                 inputs=[1] ; outputs = [] ; optype = Conv ; doc_string = "" ; attributes = [] 
@@ -100,7 +138,7 @@ type ParserTest () =
             Assert.AreEqual(List.head g, expecetd_0)
 
         [<Test>]
-        member public this.parser_test1() =
+        member public this.parser_net_test1() =
             let test_ts0 = TokenStream(
                 ["input:"; "\"1\"";
                 "output:"; "\"55\"";
@@ -117,4 +155,10 @@ type ParserTest () =
             Assert.AreEqual(List.length g, 1)
             Assert.AreEqual(List.head g, expected_0)
 
+        [<Test>]
+        member public this.parser_net_test2() =
+            let g = input_text0 |> tokenize |> parse_net
+            Assert.AreEqual(List.length g, 2)
+
     end
+

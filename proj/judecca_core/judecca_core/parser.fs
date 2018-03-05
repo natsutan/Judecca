@@ -354,6 +354,8 @@ let parse_net_core(ts:TokenStream, g : OGRAPH) : OGRAPH =
                 let i = ts.get() |> int
                 let attr = make_attribute_int(name, i)
                 node <- node_add_attributes(node, attr)
+                ts.get() |> ignore // typeを捨てる
+                let type_s = ts.get() |> toOtype
                 ts.get() |> ignore // '}' を捨てる。
             | _ -> raise (ParseError(name))
          
