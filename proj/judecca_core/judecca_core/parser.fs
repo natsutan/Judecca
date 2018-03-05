@@ -128,15 +128,19 @@ type OPTYPE =
 type OTPYE = 
     | INT
     | INTS
- 
+    | FLOAT
+
 type ATTRIBUTE =
     | KERNEL_SHAPE of int list
     | STRIDES of int list
     | PADS of int list
     | DILATIONS of int list
+    | SHAPE of int list
     | GROUP of int
     | BROADCAST of int
     | AXIS of int
+    | IS_TEST of int
+    | RATIO of float
 
 //onnxのノード
 type ONODE = {inputs : int list ; outputs : int list ; optype : OPTYPE ; doc_string : string ; attributes : ATTRIBUTE list}
@@ -279,6 +283,7 @@ let toOtype(s : string) : OTPYE =
     match s with
     | "INT" -> INT
     | "INTS" -> INTS
+    | "FLOAT" -> FLOAT
     | _ -> raise(ParseError(s))
 
 let make_attribute_ints(name : string, ints : int list) : ATTRIBUTE =
@@ -287,6 +292,7 @@ let make_attribute_ints(name : string, ints : int list) : ATTRIBUTE =
     | "strides" -> STRIDES(ints)    
     | "pads" -> PADS(ints)
     | "dilations"  -> DILATIONS(ints)
+    | "shape" -> SHAPE(ints)
     | _ -> raise(ParseError(name))
 
 let make_attribute_int(name : string, i: int ) : ATTRIBUTE =
@@ -294,8 +300,14 @@ let make_attribute_int(name : string, i: int ) : ATTRIBUTE =
     | "group"  -> GROUP(i)
     | "broadcast" -> BROADCAST(i)
     | "axis" -> AXIS(i)
+    | "is_test" -> IS_TEST(i)
     | _ -> raise(ParseError(name))
       
+let make_attribute_float(name : string, f: float ) : ATTRIBUTE =
+    match name with
+    | "ratio"  -> RATIO(f)
+    | _ -> raise(ParseError(name))
+
 //文字列の両側の""を取る関数。実装が雑
 let removeDQs(s:string) : string =
   let l = String.length s
@@ -334,7 +346,7 @@ let parse_net_core(ts:TokenStream, g : OGRAPH) : OGRAPH =
                 raise(ParseError(name_e))
             let name = ts.get() |> removeDQs
             match name with 
-            | "kernel_shape" | "strides" | "pads" | "dilations"  -> 
+            | "kernel_shape" | "strides" | "pads" | "dilations" | "shape" -> 
                 let mutable ints : int list = []
                 let mutable at = ts.get()
                 while at <> "type:" do
@@ -349,10 +361,18 @@ let parse_net_core(ts:TokenStream, g : OGRAPH) : OGRAPH =
                 let attr = make_attribute_ints(name, ints)
                 node <- node_add_attributes(node, attr)
                 ts.get() |> ignore // '}' を捨てる。
-            |   "group" | "broadcast" | "axis" ->
+            |   "group" | "broadcast" | "axis" | "is_test" ->
                 ts.get() |> ignore // iを捨てる
                 let i = ts.get() |> int
                 let attr = make_attribute_int(name, i)
+                node <- node_add_attributes(node, attr)
+                ts.get() |> ignore // typeを捨てる
+                let type_s = ts.get() |> toOtype
+                ts.get() |> ignore // '}' を捨てる。
+            |   "ratio" ->
+                ts.get() |> ignore // iを捨てる
+                let f = ts.get() |> float
+                let attr = make_attribute_float(name, f)
                 node <- node_add_attributes(node, attr)
                 ts.get() |> ignore // typeを捨てる
                 let type_s = ts.get() |> toOtype
