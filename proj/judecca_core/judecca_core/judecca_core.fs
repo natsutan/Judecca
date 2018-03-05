@@ -1,4 +1,4 @@
 ﻿namespace judecca_core
 
-type Class1() = 
+type judecca_parser() = 
     member this.X = "F#"

@@ -5,6 +5,30 @@ open System.Security.Authentication.ExtendedProtection
 
 exception ParseError of string
 
+//文字列を自作ストリームとして扱うクラス
+type TokenStream(buf : string list) =
+    class
+        let _buf : string list = buf
+        let mutable p : int = 0
+
+        member this.get() =
+            if this.is_last() then
+                ""
+            else
+                let t = _buf.[p]
+                p <- p + 1
+                t
+        
+        member this.back() = 
+            match p with
+            | 0 -> p <- 0
+            | _ -> p <- p - 1
+
+        member this.is_last() : bool =
+            List.length buf = p
+    end
+
+
 //onnxのOP_TYPE
 type OPTYPE = 
     | Abs
@@ -118,34 +142,12 @@ type ATTRIBUTE =
 type ONODE = {inputs : int list ; outputs : int list ; optype : OPTYPE ; doc_string : string ; attributes : ATTRIBUTE list}
 let init_onode : ONODE = {inputs = []; outputs = []; optype = DUMMY; doc_string = ""; attributes = []}
 
-//onnx graph
+//graphの操作
 type OGRAPH = ONODE list
 
 let init_graph() : OGRAPH =
     let dummy : ONODE = {inputs=[]; outputs=[]; optype=DUMMY; doc_string=""; attributes= []}
     [dummy]
-
-type TokenStream(buf : string list) =
-    class
-        let _buf : string list = buf
-        let mutable p : int = 0
-
-        member this.get() =
-            if this.is_last() then
-                ""
-            else
-                let t = _buf.[p]
-                p <- p + 1
-                t
-        
-        member this.back() = 
-            match p with
-            | 0 -> p <- 0
-            | _ -> p <- p - 1
-
-        member this.is_last() : bool =
-            List.length buf = p
-    end
 
 let graph_add_new_node (g : OGRAPH, node : ONODE) : OGRAPH =
     match node.optype with
@@ -176,6 +178,7 @@ let node_add_attributes(node:ONODE, attr : ATTRIBUTE) : ONODE =
     {inputs=node.inputs; outputs=node.outputs ; optype=node.optype; doc_string=node.doc_string;
       attributes=node.attributes @ [attr] }
  
+//文字列からOPTYPEへの変換
 let toOptype(s:string) : OPTYPE =
     match s with 
     | "Abs" -> Abs
@@ -286,7 +289,6 @@ let make_attribute_ints(name : string, ints : int list) : ATTRIBUTE =
     | "dilations"  -> DILATIONS(ints)
     | _ -> raise(ParseError(name))
 
-
 let make_attribute_int(name : string, i: int ) : ATTRIBUTE =
     match name with
     | "group"  -> GROUP(i)
@@ -294,6 +296,7 @@ let make_attribute_int(name : string, i: int ) : ATTRIBUTE =
     | "aixs" -> AIXS(i)
     | _ -> raise(ParseError(name))
       
+//文字列の両側の""を取る関数。実装が雑
 let removeDQs(s:string) : string =
   let l = String.length s
   s.Substring(1,l-2)
@@ -353,8 +356,7 @@ let parse_net_core(ts:TokenStream, g : OGRAPH) : OGRAPH =
                 node <- node_add_attributes(node, attr)
                 ts.get() |> ignore // '}' を捨てる。
             | _ -> raise (ParseError(name))
-          
-
+         
         | _ -> raise(ParseError(t))
 
         t <- ts.get()
