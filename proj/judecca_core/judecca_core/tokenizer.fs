@@ -30,7 +30,8 @@ let line_split(s:string) =
     
 let tokenize(s:string) =
     let mutable tokens : string list = []
-    let lines = s.Split('\n')
+    let s2 = s.Replace("\r\n", "\n")
+    let lines = s2.Split('\n')
     for line in lines do
         let t = line_split line
         tokens <- tokens @ t

@@ -16,8 +16,9 @@ let test2 = token_test_data("1 2 " , ["1";"2"])
 let test3 = token_test_data("input: \"1\"\n" , ["input:";"\"1\""])
 let test4 = token_test_data("\"1 2 \"\n" , ["\"1 2 \""])
 let test5 = token_test_data("attribute {\n  name: \"kernel_shape\"\n  ints: 3\n ints: 3\n type: INTS\n  }" , ["attribute"; "{"; "name:"; "\"kernel_shape\""; "ints:" ; "3" ; "ints:"; "3" ; "type:"; "INTS"; "}"])
+let test6 = token_test_data("1 2\r\n5" , ["1";"2";"5"])
 
-let token_test_sorces = [test1; test2; test3; test4; test5]
+let token_test_sorces = [test1; test2; test3; test4; test5; test6]
 
 [<Category("tokenizer")>]
 [<TestCaseSource("token_test_sorces")>]
