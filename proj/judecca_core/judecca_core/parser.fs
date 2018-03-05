@@ -136,7 +136,7 @@ type ATTRIBUTE =
     | DILATIONS of int list
     | GROUP of int
     | BROADCAST of int
-    | AIXS of int
+    | AXIS of int
 
 //onnxのノード
 type ONODE = {inputs : int list ; outputs : int list ; optype : OPTYPE ; doc_string : string ; attributes : ATTRIBUTE list}
@@ -293,7 +293,7 @@ let make_attribute_int(name : string, i: int ) : ATTRIBUTE =
     match name with
     | "group"  -> GROUP(i)
     | "broadcast" -> BROADCAST(i)
-    | "aixs" -> AIXS(i)
+    | "axis" -> AXIS(i)
     | _ -> raise(ParseError(name))
       
 //文字列の両側の""を取る関数。実装が雑
@@ -349,7 +349,7 @@ let parse_net_core(ts:TokenStream, g : OGRAPH) : OGRAPH =
                 let attr = make_attribute_ints(name, ints)
                 node <- node_add_attributes(node, attr)
                 ts.get() |> ignore // '}' を捨てる。
-            |   "group" | "broadcast" | "aixs" ->
+            |   "group" | "broadcast" | "axis" ->
                 ts.get() |> ignore // iを捨てる
                 let i = ts.get() |> int
                 let attr = make_attribute_int(name, i)
