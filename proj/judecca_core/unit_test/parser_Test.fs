@@ -121,7 +121,38 @@ attribute {
   type: INT
 }
 "
+let input_text1 = "input: \"162\"
+output: \"163\"
+op_type: \"Relu\"
+doc_string: \"abc\"
+"
 
+let input_text2 = "input: \"159\"
+input: \"163\"
+output: \"164\"
+op_type: \"Concat\"
+attribute {
+  name: \"axis\"
+  i: 1
+  type: INT
+}
+doc_string: \"abc\"
+"
+let input_text3 = "input: \"164\"
+output: \"166\"
+output: \"167\"
+op_type: \"Dropout\"
+attribute {
+  name: \"is_test\"
+  i: 1
+  type: INT
+}
+attribute {
+  name: \"ratio\"
+  f: 0.5
+  type: FLOAT
+}
+"
 
 [<TestFixture>]
 [<Category("ParserNet")>]
@@ -158,6 +189,12 @@ type ParserNetTest () =
         [<Test>]
         member public this.parser_net_test2() =
             let g = input_text0 |> tokenize |> parse_net
+            Assert.AreEqual(List.length g, 2)
+            let g = input_text1 |> tokenize |> parse_net
+            Assert.AreEqual(List.length g, 2)
+            let g = input_text2 |> tokenize |> parse_net
+            Assert.AreEqual(List.length g, 2)
+            let g = input_text3 |> tokenize |> parse_net
             Assert.AreEqual(List.length g, 2)
 
     end

@@ -383,8 +383,8 @@ let parse_net_core(ts:TokenStream, g : OGRAPH) : OGRAPH =
 
         t <- ts.get()
 
-    graph_add_new_node(g, node)
-                                                                                      
+    graph <- graph_add_new_node(graph, node)                                                                                  
+    graph
 
 let parse_net (ts : string list) : OGRAPH =
     let g = init_graph()
