@@ -6,7 +6,6 @@ type TENSOR_TYPE = { elem_type : OTPYE ; shape : int list }
 
 type  OINPUT_TYPE = TENSOR_TYPE
 
-
 type OINPUT = { name : string ; itype : OINPUT_TYPE}
 
 type OINPUT_LIST = OINPUT list
@@ -23,11 +22,10 @@ let parse_name(ts : TokenStream) : string =
     ts.get() |> removeDQs
 
 let parse_elem_type(ts : TokenStream) : OTPYE =
-    let etype = ts.get()
-    if etype <> "elem_type:" then
-        raise(ParseError(etype))
-    ts.get() |> ignore // { のスキップ
-    etype |> toOtype
+    let t = ts.get()
+    if t <> "elem_type:" then
+        raise(ParseError(t))
+    ts.get() |> toOtype
 
 let parse_shape(ts : TokenStream) : int list =
     let mutable il : int list = []
@@ -66,10 +64,6 @@ let parse_type(ts : TokenStream) : OINPUT_TYPE =
 
     | _ ->  raise(ParseError(itype))
  
-
-
-    
-
 let parse_input_core(ts : TokenStream) : OINPUT_LIST =
     let mutable oi = init_inputs
 

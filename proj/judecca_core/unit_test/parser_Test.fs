@@ -3,7 +3,7 @@
 open NUnit.Framework
 open tokenizer
 open parser_net
-
+open parser_input
 
 [<TestFixture>]
 [<Category("TokenStream")>]
@@ -170,13 +170,12 @@ type ParserNetTest () =
 
         [<Test>]
         member public this.parser_net_test1() =
-            let test_ts0 = TokenStream(
-                ["input:"; "\"1\"";
-                "output:"; "\"55\"";
-                "op_type:"; "\"Conv\"";
-                "doc_string:" ; "\"abc\"" ;
-                "attribute" ; "{" ; "name:" ; "\"kernel_shape\"" ; "ints:" ; "3" ; "ints:" ; "3" ;"type:" ; "INTS" ; "}"
-                ])
+            let test_ts0 = TokenStream(["input:"; "\"1\"";
+            "output:"; "\"55\"";
+            "op_type:"; "\"Conv\"";
+            "doc_string:" ; "\"abc\"" ;
+            "attribute" ; "{" ; "name:" ; "\"kernel_shape\"" ; "ints:" ; "3" ; "ints:" ; "3" ;"type:" ; "INTS" ; "}"
+            ])
             let expected_attr : ATTRIBUTE = make_attribute_ints( "kernel_shape", [3;3])
             let expected_0 : ONODE = {
                 inputs=[1] ; outputs = [55] ; optype = Conv ; doc_string = "abc" ; 
@@ -199,3 +198,26 @@ type ParserNetTest () =
 
     end
 
+[<TestFixture>]
+[<Category("ParserInput")>]
+type ParserInput () = 
+    class
+        [<Test>]
+        member public this.parser_input_test0() =
+            let test0_ts = TokenStream(["name:" ;"\"1\""])
+            let name = parse_name test0_ts
+            Assert.AreEqual(name, "1")
+
+            let test1_ts = TokenStream(["elem_type:"; "FLOAT"])
+            let etype = parse_elem_type(test1_ts)
+            Assert.AreEqual(etype, FLOAT)
+
+            let test2_ts = TokenStream(["shape"; "{";
+            "dim"; "{" ;"dim_value:"; "1"; "}" ;
+            "dim"; "{" ;"dim_value:"; "3"; "}" ;
+            "dim"; "{" ;"dim_value:"; "224"; "}" ;
+            "dim"; "{" ;"dim_value:"; "224";  "}" ;
+            "}"; "}"])
+            let shape = parse_shape test2_ts
+            Assert.AreEqual(shape, [1;3;224;224])
+    end
