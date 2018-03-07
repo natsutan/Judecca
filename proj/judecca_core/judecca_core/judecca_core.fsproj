@@ -57,7 +57,8 @@
     <Compile Include="judecca_core.fs" />
     <None Include="Script.fsx" />
     <Content Include="packages.config" />
-    <Compile Include="parser.fs" />
+    <Compile Include="parser_net.fs" />
+    <Compile Include="parser_input.fs" />
     <Compile Include="tokenizer.fs" />
   </ItemGroup>
   <ItemGroup>

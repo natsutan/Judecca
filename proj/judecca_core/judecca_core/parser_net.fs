@@ -1,4 +1,4 @@
-﻿module parser
+﻿module parser_net
 
 open System.Runtime.InteropServices
 open System.Security.Authentication.ExtendedProtection
@@ -390,3 +390,4 @@ let parse_net (ts : string list) : OGRAPH =
     let g = init_graph()
     let token_strem = TokenStream(ts)
     parse_net_core(token_strem, g)
+

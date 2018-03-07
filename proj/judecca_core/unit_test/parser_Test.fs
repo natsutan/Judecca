@@ -2,7 +2,7 @@
 
 open NUnit.Framework
 open tokenizer
-open parser
+open parser_net
 
 
 [<TestFixture>]
@@ -164,7 +164,7 @@ type ParserNetTest () =
             let expecetd_0 : ONODE = {
                 inputs=[1] ; outputs = [] ; optype = Conv ; doc_string = "" ; attributes = [] 
                 }
-            let g = parser.parse_net_core(test_ts0, [])
+            let g = parser_net.parse_net_core(test_ts0, [])
             Assert.AreEqual(List.length g, 1)
             Assert.AreEqual(List.head g, expecetd_0)
 
@@ -182,7 +182,7 @@ type ParserNetTest () =
                 inputs=[1] ; outputs = [55] ; optype = Conv ; doc_string = "abc" ; 
                 attributes = [expected_attr] 
                 }
-            let g = parser.parse_net_core(test_ts0, [])
+            let g = parser_net.parse_net_core(test_ts0, [])
             Assert.AreEqual(List.length g, 1)
             Assert.AreEqual(List.head g, expected_0)
 
