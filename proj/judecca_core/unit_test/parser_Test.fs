@@ -207,10 +207,12 @@ type ParserInput () =
             let test0_ts = TokenStream(["name:" ;"\"1\""])
             let name = parse_name test0_ts
             Assert.AreEqual(name, "1")
+            Assert.IsTrue(test0_ts.is_last())
 
             let test1_ts = TokenStream(["elem_type:"; "FLOAT"])
             let etype = parse_elem_type(test1_ts)
             Assert.AreEqual(etype, FLOAT)
+            Assert.IsTrue(test1_ts.is_last())
 
             let test2_ts = TokenStream(["shape"; "{";
             "dim"; "{" ;"dim_value:"; "1"; "}" ;
@@ -220,4 +222,5 @@ type ParserInput () =
             "}"; "}"])
             let shape = parse_shape test2_ts
             Assert.AreEqual(shape, [1;3;224;224])
+            Assert.IsTrue(test2_ts.is_last())
     end

@@ -1,11 +1,18 @@
-﻿// F# の詳細については、http://fsharp.org を参照してください
-// 詳細については、'F# チュートリアル' プロジェクトを参照してください。
+﻿open System.IO
+open tokenizer
+open parser_net
 
-let network = "C:\\home\\myproj\\Judecca\\testdata\\mobilenet_onnx_network.txt"
+
+let network = "C:\\home\\myproj\\Judecca\\testdata\\squeezenet_onnx.net.txt"
 
 [<EntryPoint>]
 let main argv = 
+    let s = File.ReadAllText(network)
+    let tokens = tokenize s 
+    let g =  parse_net tokens
+
+    for n in g do
+        printfn "%A" n
 
 
-    printfn "%A" argv
     0 // 整数の終了コードを返します
