@@ -223,4 +223,18 @@ type ParserInput () =
             let shape = parse_shape test2_ts
             Assert.AreEqual(shape, [1;3;224;224])
             Assert.IsTrue(test2_ts.is_last())
+
+            let test3_str = ["name:"; "\"1\"";
+            "type"; "{";
+            "tensor_type"; "{";
+            "elem_type:"; "FLOAT";
+            "shape"; "{";
+            "dim"; "{"; "dim_value:"; "1"; "}";
+            "dim"; "{"; "dim_value:"; "3"; "}";
+            "dim"; "{"; "dim_value:"; "224"; "}";
+            "dim"; "{"; "dim_value:"; "224"; "}";
+            "}";  "}" ; "}"]
+            let il = parse_input test3_str
+            Assert.AreEqual(List.length il, 2)
+
     end

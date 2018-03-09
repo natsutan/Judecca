@@ -59,7 +59,7 @@ let parse_type(ts : TokenStream) : OINPUT_TYPE =
         let elem_type = parse_elem_type(ts)
         let shape = parse_shape(ts)
         ts.get() |> ignore // '}' のskip
-        ts.get() |> ignore // '}' のskip
+        //ts.get() |> ignore // '}' のskip
         {elem_type = elem_type ; shape = shape }        
 
     | _ ->  raise(ParseError(itype))
@@ -73,7 +73,7 @@ let parse_input_core(ts : TokenStream) : OINPUT_LIST =
         oi <- oi @ [{name = name ; itype = itype}]
     oi
 
-let parse_ipunt (ts : string list) : OINPUT_LIST =
+let parse_input (ts : string list) : OINPUT_LIST =
     let token_strem = TokenStream(ts)
     parse_input_core(token_strem
     )
