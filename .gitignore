@@ -1,0 +1,5 @@
+
+onnx_reader/src/App/bin/Debug/netcoreapp2.1/*
+onnx_reader/src/App/obj/*
+onnx_reader/src/Library/bin/*
+onnx_reader/src/Library/obj/*
