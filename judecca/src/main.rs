@@ -1,4 +1,8 @@
+mod onnx_reader;
+
 fn main() {
-    println!("Hello, world!");
+    let x = onnx_reader::onnx_reader::onnxread();
+    
+    println!("Hello, world! {}", x);
 }
 
