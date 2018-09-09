@@ -1,6 +1,7 @@
 [package]
 name = "judecca"
 version = "0.1.0"
-authors = ["natsutan <km1km1km1>"]
+authors = ["natsutan"]
 
 [dependencies]
+protobuf = { version = "~2.0", features = ["with-bytes"] }
