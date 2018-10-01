@@ -9,7 +9,7 @@ mod onnx_reader;
 use onnx_reader::onnx::ModelProto;
 
 fn main() {
-    let file = File::open("../../data/squeezenet/model.onnx").expect("fail to open file");
+    let file = File::open("../data/squeezenet/model.onnx").expect("fail to open file");
     let mut buffered_reader = BufReader::new(file);
     let mut cis = CodedInputStream::from_buffered_reader(&mut buffered_reader);
 
