@@ -3,3 +3,7 @@ judecca/target/debug/*
 judecca/Cargo.lock
 judecca/target/.rustc_info.json
 proj/judecca_core/judecca_core/obj/fsac.cache
+judecca/sq.dot
+judecca/.idea/judecca.iml
+judecca/.idea/*
+tools/onnx_python/.idea/*
