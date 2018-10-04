@@ -1,4 +1,5 @@
 use std::fs;
+use std::fs::File;
 use std::io::{BufWriter, Write};
 
 use onnx_if::onnx::ModelProto;
@@ -22,6 +23,8 @@ pub fn write_dot(model:&ModelProto, filename:&str) {
     fb.write(graph_name.as_bytes()).unwrap();
 
 
+
+
     //ノードの一覧を出力
     let mut name_gen = NodeNameGenerator{num :0, prefix :&"OP".to_string()};
     println!("op_name = {}", generate_name(&mut name_gen));
@@ -31,6 +34,10 @@ pub fn write_dot(model:&ModelProto, filename:&str) {
 
     //接続を出力
 
+
+
+    //閉じ括弧
+    rb(&mut fb);
 }
 
 fn get_model_name(model:&ModelProto) -> &str {
@@ -50,3 +57,10 @@ fn generate_name(gen:&mut NodeNameGenerator) -> String{
     name
 }
 
+fn lb(fb:&mut BufWriter<File>) {
+    fb.write(b"{").unwrap();
+}
+
+fn rb(fb:&mut BufWriter<File>) {
+    fb.write(b"}").unwrap();
+}
