@@ -18,10 +18,11 @@ pub fn write_dot(model:&ModelProto, filename:&str) {
     //ファイルを開く
     let fp = fs::File::create(filename).unwrap();
     let mut fb = BufWriter::new(fp);
-    //グラフ全体の情報を取る
-    let graph_name = get_model_name(model);
-    fb.write(graph_name.as_bytes()).unwrap();
 
+    let graph_name = get_model_name(model);
+    fb.write(b"digraph ").unwrap();
+    fb.write(graph_name.as_bytes()).unwrap();
+    lb(&mut fb);
 
 
 
@@ -57,10 +58,17 @@ fn generate_name(gen:&mut NodeNameGenerator) -> String{
     name
 }
 
+fn cr(fb:&mut BufWriter<File>) {
+    fb.write(b"\n").unwrap();
+}
+
+
 fn lb(fb:&mut BufWriter<File>) {
     fb.write(b"{").unwrap();
+    cr(fb);
 }
 
 fn rb(fb:&mut BufWriter<File>) {
     fb.write(b"}").unwrap();
+    cr(fb);
 }
