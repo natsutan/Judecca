@@ -3,7 +3,9 @@ use std::fs::File;
 use std::io::{BufWriter, Write};
 
 use onnx_if::onnx::ModelProto;
+use onnx_if::onnx::NodeProto;
 
+#[allow(dead_code)]
 pub fn node_dump(model:&ModelProto) {
 
     let graph = model.get_graph();
@@ -19,25 +21,38 @@ pub fn write_dot(model:&ModelProto, filename:&str) {
     let fp = fs::File::create(filename).unwrap();
     let mut fb = BufWriter::new(fp);
 
+    let graph = model.get_graph();
+    let nodes = graph.get_node();
+
     let graph_name = get_model_name(model);
     fb.write(b"digraph ").unwrap();
     fb.write(graph_name.as_bytes()).unwrap();
     lb(&mut fb);
 
-
-
     //ノードの一覧を出力
+    fb.write(b"// node define\n").unwrap();
+
     let mut name_gen = NodeNameGenerator{num :0, prefix :&"OP".to_string()};
-    println!("op_name = {}", generate_name(&mut name_gen));
-    println!("op_name = {}", generate_name(&mut name_gen));
-    println!("op_name = {}", generate_name(&mut name_gen));
 
+    for node in nodes {
+        let op_name = generate_name(&mut name_gen);
+        let node_name = build_node_name(&node, op_name);
+        fb.write(format!("{};\n", node_name).as_bytes()).unwrap();
 
-    //接続を出力
+        for input in node.get_input() {
+            let src = input;
+            let dst = node_name.clone();
+            fb.write(format!("\"{}\" -> \"{}\";\n", src, dst).as_bytes()).unwrap();
+        }
 
+        for output in node.get_output() {
+            let src = node_name.clone();
+            let dst = output;
+            fb.write(format!("\"{}\" -> \"{}\";\n", src, dst).as_bytes()).unwrap();
+        }
 
+    }
 
-    //閉じ括弧
     rb(&mut fb);
 }
 
@@ -71,4 +86,9 @@ fn lb(fb:&mut BufWriter<File>) {
 fn rb(fb:&mut BufWriter<File>) {
     fb.write(b"}").unwrap();
     cr(fb);
+}
+
+fn build_node_name(node:&NodeProto, op_name:String) -> String {
+    let op_type = node.get_op_type();
+    format!("{}_{}", op_name, op_type)
 }

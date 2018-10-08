@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="22af8d45-15f7-4c34-99da-ab30c9549612" name="Default Changelist" comment="ファイルの分離">
+    <list default="true" id="22af8d45-15f7-4c34-99da-ab30c9549612" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/graph.bat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/onnx_if/onnx_graph.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/onnx_if/onnx_graph.rs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,7 +17,7 @@
     <session id="1316748686">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="13" />
+          <entry key="project.closed" value="15" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.15" value="1" />
@@ -23,36 +25,41 @@
           <entry key="project.open.time.17" value="3" />
           <entry key="project.open.time.18" value="1" />
           <entry key="project.open.time.19" value="1" />
+          <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.20" value="1" />
           <entry key="project.open.time.22" value="1" />
-          <entry key="project.open.time.23" value="1" />
+          <entry key="project.open.time.23" value="2" />
+          <entry key="project.open.time.24" value="1" />
           <entry key="project.open.time.6" value="1" />
-          <entry key="project.opened" value="13" />
+          <entry key="project.opened" value="16" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="1" />
-          <entry key="rs" value="1620" />
-          <entry key="txt" value="7" />
+          <entry key="rs" value="2348" />
+          <entry key="txt" value="43" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="8" />
-          <entry key="Rust" value="1620" />
+          <entry key="PLAIN_TEXT" value="44" />
+          <entry key="Rust" value="2348" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="PLAIN_TEXT" value="2" />
+          <entry key="Image" value="1" />
+          <entry key="PLAIN_TEXT" value="3" />
           <entry key="Rust" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.spring.boot.run.usages" />
       <usages-collector id="statistics.file.extensions.open">
         <counts>
+          <entry key="bat" value="1" />
           <entry key="dot" value="1" />
+          <entry key="png" value="1" />
           <entry key="proto" value="1" />
           <entry key="rs" value="4" />
         </counts>
@@ -67,8 +74,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main.rs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="36" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
+            <state relative-caret-position="119">
+              <caret line="7" column="2" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="2" />
             </state>
           </provider>
         </entry>
@@ -94,13 +101,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/onnx_if/onnx_graph.rs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="131">
-              <caret line="39" column="6" lean-forward="true" selection-start-line="39" selection-start-column="6" selection-end-line="39" selection-end-column="6" />
+            <state relative-caret-position="119">
+              <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
               <folding>
-                <element signature="e#1233#1234#0" expanded="true" />
-                <element signature="e#1264#1265#0" expanded="true" />
-                <element signature="e#1233#1234#0" expanded="true" />
-                <element signature="e#1264#1265#0" expanded="true" />
+                <element signature="e#1283#1284#0" expanded="true" />
+                <element signature="e#1318#1319#0" expanded="true" />
+                <element signature="e#1598#1599#0" expanded="true" />
+                <element signature="e#1630#1631#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -108,14 +115,28 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sq.dot">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3215">
+              <caret line="262" selection-start-line="262" selection-end-line="262" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/graph.png">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/graph.bat">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/onnx_if/onnx.rs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="43741">
-              <caret line="2887" column="8" selection-start-line="2887" selection-start-column="4" selection-end-line="2887" selection-end-column="8" />
+            <state relative-caret-position="101">
+              <caret line="1159" column="9" selection-start-line="1159" selection-start-column="4" selection-end-line="1159" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -142,6 +163,8 @@
       <find>int</find>
       <find>int8</find>
       <find>uint</find>
+      <find>input</find>
+      <find>print</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -152,8 +175,8 @@
       <list>
         <option value="$PROJECT_DIR$/src/onnx_reader/mod.rs" />
         <option value="$PROJECT_DIR$/src/onnx_if/mod.rs" />
-        <option value="$PROJECT_DIR$/src/main.rs" />
         <option value="$PROJECT_DIR$/src/onnx_if/onnx_reader.rs" />
+        <option value="$PROJECT_DIR$/src/main.rs" />
         <option value="$PROJECT_DIR$/src/onnx_if/onnx_graph.rs" />
       </list>
     </option>
@@ -210,8 +233,8 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538443938762" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538993746966" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../study_rust/slib_cook/chap1" />
     <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
@@ -266,6 +289,9 @@
       <workItem from="1538410274162" duration="21000" />
       <workItem from="1538433809072" duration="6354000" />
       <workItem from="1538473732383" duration="1114000" />
+      <workItem from="1538701451001" duration="3081000" />
+      <workItem from="1538985864990" duration="428000" />
+      <workItem from="1538991245674" duration="2498000" />
     </task>
     <task id="LOCAL-00001" summary="ファイルの分離">
       <created>1538378424651</created>
@@ -274,16 +300,24 @@
       <option name="project" value="LOCAL" />
       <updated>1538378424651</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="文法エラーの無いdotファイルを作成できるようになった。">
+      <created>1538702036112</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1538702036112</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14831000" />
+    <option name="totallyTimeSpent" value="20838000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="704" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23157895" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2437247" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -292,7 +326,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32924694" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32924694" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -321,34 +355,14 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="ファイルの分離" />
-    <option name="LAST_COMMIT_MESSAGE" value="ファイルの分離" />
+    <MESSAGE value="文法エラーの無いdotファイルを作成できるようになった。" />
+    <option name="LAST_COMMIT_MESSAGE" value="文法エラーの無いdotファイルを作成できるようになった。" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="36" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/onnx_if/mod.rs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/onnx_if/onnx_reader.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/onnx_if/onnx.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="43741">
-          <caret line="2887" column="8" selection-start-line="2887" selection-start-column="4" selection-end-line="2887" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -359,18 +373,49 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sq.dot">
+    <entry file="file://$PROJECT_DIR$/graph.bat">
       <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/onnx_if/onnx.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="101">
+          <caret line="1159" column="9" selection-start-line="1159" selection-start-column="4" selection-end-line="1159" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graph.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sq.dot">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3215">
+          <caret line="262" selection-start-line="262" selection-end-line="262" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="2" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/onnx_if/onnx_reader.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/onnx_if/onnx_graph.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="131">
-          <caret line="39" column="6" lean-forward="true" selection-start-line="39" selection-start-column="6" selection-end-line="39" selection-end-column="6" />
+        <state relative-caret-position="119">
+          <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
           <folding>
-            <element signature="e#1233#1234#0" expanded="true" />
-            <element signature="e#1264#1265#0" expanded="true" />
-            <element signature="e#1233#1234#0" expanded="true" />
-            <element signature="e#1264#1265#0" expanded="true" />
+            <element signature="e#1283#1284#0" expanded="true" />
+            <element signature="e#1318#1319#0" expanded="true" />
+            <element signature="e#1598#1599#0" expanded="true" />
+            <element signature="e#1630#1631#0" expanded="true" />
           </folding>
         </state>
       </provider>
