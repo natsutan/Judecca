@@ -5,3 +5,4 @@ authors = ["natsutan"]
 
 [dependencies]
 protobuf = { version = "~2.0", features = ["with-bytes"] }
+petgraph = "*"

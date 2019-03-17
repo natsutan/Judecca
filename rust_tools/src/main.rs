@@ -1,21 +1,12 @@
 extern crate protobuf;
 
-use std::fs::File;
-use std::io::{BufReader};
-use protobuf::{CodedInputStream, Message};
-
 //protoc --rust_out . onnx.proto で生成されたonnx.rsを読み込む
-mod onnx_reader;
-use onnx_reader::onnx::ModelProto;
+mod onnx_if;
 
 fn main() {
-    let file = File::open("../../data/squeezenet/model.onnx").expect("fail to open file");
-    let mut buffered_reader = BufReader::new(file);
-    let mut cis = CodedInputStream::from_buffered_reader(&mut buffered_reader);
+    let model:onnx_if::onnx::ModelProto = onnx_if::onnx_reader::onnxread("../data/squeezenet/model_op9.onnx");
+//    onnx_if::onnx_graph::node_dump(&model);
+    onnx_if::onnx_graph::write_dot(&model, "sq.dot");
 
-    let mut u = ModelProto::new();
-    u.merge_from(&mut cis).expect("fail to merge");
-
-    println!("producer name: {}", u.get_producer_name());
 }
 
