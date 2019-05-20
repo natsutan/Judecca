@@ -9,3 +9,6 @@ data/inception_v2
 data/squeezenet/
 judecca/.idea/workspace.xml
 
+*.hy#
+*.hy~
+work/proto/.#livness.hy
