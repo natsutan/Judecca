@@ -7,11 +7,6 @@ tools/onnx_python/.idea/*
 .idea
 data/inception_v2
 data/squeezenet/
-judecca/.idea/workspace.xml
-
 *.hy#
 *.hy~
 work/proto/.#livness.hy
-judecca/.idea/
-judecca/.idea/misc.xml
-judecca/.idea/workspace.xml
