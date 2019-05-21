@@ -1,5 +1,4 @@
 judecca/target/debug/*
-judecca/Cargo.lock
 judecca/target/.rustc_info.json
 judecca/sq.dot
 judecca/.idea/
@@ -7,6 +6,4 @@ tools/onnx_python/.idea/*
 .idea
 data/inception_v2
 data/squeezenet/
-*.hy#
-*.hy~
-work/proto/.#livness.hy
+data/bvlc_googlenet/model.onnx
