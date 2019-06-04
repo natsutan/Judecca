@@ -7,3 +7,5 @@ tools/onnx_python/.idea/*
 data/inception_v2
 data/squeezenet/
 data/bvlc_googlenet/model.onnx
+judecca/output/output.png
+judecca/output/liveness.dot
