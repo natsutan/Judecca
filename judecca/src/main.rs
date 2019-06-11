@@ -22,12 +22,15 @@ fn main() {
         let name = &node.borrow().name;
         let mut succ_str = "".to_string();
         for s in node.borrow().clone().succ {
-            succ_str = format!("{} {}", succ_str, s.borrow().name);
+            let node_succ = &ir[s as usize];
+
+            succ_str = format!("{} {}", succ_str, node_succ.borrow().name);
         }
 
         let mut pred_str = "".to_string();
         for p in node.borrow().clone().pred {
-            pred_str = format!("{} {} ", pred_str, p.borrow().name);
+            let node_pred = &ir[p as usize];
+            pred_str = format!("{} {} ", pred_str, node_pred.borrow().name);
         }
 
         let use_s = format!("{:?}", node.borrow().use_s);
