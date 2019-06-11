@@ -64,6 +64,10 @@ pub fn onnx_to_ir(onnx :&onnx::ModelProto) -> LivenessIr {
         ir.push(irnode);
 
         layer_cnt = layer_cnt + 1;
+
+        if layer_cnt > 5 {
+            break;
+        }
     }
 
     //make graph
@@ -86,17 +90,18 @@ fn is_table_same(g0:& LivenessIr, in_s : &Vec<HashSet<String>>, out_s: &Vec<Hash
     assert!(g0.len() == out_s.len());
 
     let mut result:bool = true;
+    print_liveness(&g0);
 
     for i in 0 .. g0.len() {
         if g0[i].borrow().in_s != in_s[i] {
             result = false;
         }
-//        if g0[i].out_s != out_s[i] {
-//            result = false;
-//        }
+        if g0[i].borrow().out_s != out_s[i] {
+            result = false;
+        }
     }
 
-
+    print!("is_table_same return {}\n", result);
     result
 }
 
@@ -106,6 +111,9 @@ pub fn liveness_analysis(ir: &mut LivenessIr) {
 
     //copy
     let mut first = true;
+
+
+
 
     for _i in 0..ir.len() {
         let mut new_use_s:HashSet<String> = HashSet::new();
@@ -122,8 +130,39 @@ pub fn liveness_analysis(ir: &mut LivenessIr) {
 
 
     while !is_table_same(&ir, &in_s_save, &out_s_save) {
-        print!("loop\n");
+        print!("loop1\n");
+        //ダミーを取り除く
         in_s_save[0].remove(&"Dummy".to_string());
+        //データのコピー
+        for i in 0..ir.len() {
+
+            in_s_save[i] = ir[i].borrow().in_s.clone();
+            out_s_save[i] = ir[i].borrow().out_s.clone();
+            ir[i].borrow_mut().in_s.clear();
+
+            for d in ir[i].borrow().out_s.difference(&ir[i].borrow().def_s) {
+                ir[i].borrow_mut().in_s.insert(d.clone());
+            }
+            for s in &ir[i].borrow().succ {
+                for succ_in in &s.borrow().in_s {
+                    ir[i].borrow_mut().out_s.insert(succ_in.to_string());
+                }
+            }
+        }
+    }
+}
+
+pub fn print_liveness(ir: &LivenessIr) {
+    print!("--- liveness ---\n");
+    for node in ir  {
+        let name = &node.borrow().name;
+        let mut succ_str = "".to_string();
+
+        let in_s = format!("{:?}", node.borrow().in_s);
+        let out_s = format!("{:?}", node.borrow().out_s);
+
+        let line = format!("{} [{}] [{}]", name, in_s, out_s);
+        print!("{}\n", line);
     }
 
 }
@@ -139,7 +178,6 @@ pub fn write_dot(ir:LivenessIr, file:String) {
             writer.write(line.as_bytes()).unwrap();
         }
     }
-
 
     writer.write("}\n".as_bytes()).unwrap();
 }

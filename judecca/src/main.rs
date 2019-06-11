@@ -4,7 +4,7 @@ use std::ops::Deref;
 //use std::io::{BufReader};
 //use protobuf::{,Message};
 use judecca::onnx_io::onnx_reader::onnx_read;
-use judecca::liveness::liveness_analysis::{onnx_to_ir, write_dot, liveness_analysis};
+use judecca::liveness::liveness_analysis::{onnx_to_ir, write_dot, liveness_analysis, print_liveness};
 
 //protoc --rust_out . onnx.proto で生成されたonnx.rsを読み込む
 
@@ -18,7 +18,7 @@ fn main() {
     liveness_analysis(&mut ir);
 
 
-    for node in ir  {
+    for node in &ir  {
         let name = &node.borrow().name;
         let mut succ_str = "".to_string();
         for s in node.borrow().clone().succ {
@@ -33,11 +33,11 @@ fn main() {
         let use_s = format!("{:?}", node.borrow().use_s);
         let def_s = format!("{:?}", node.borrow().def_s);
 
-        let line = format!("node:{} succ:[{}] pred:[{}] d:{} u:{}", name, succ_str, pred_str, def_s, use_s);
-//        print!("{}\n", line);
+        let line = format!("node:{} succ:[{}] pred:[{}] u:{} d:{}", name, succ_str, pred_str, use_s, def_s);
+        print!("{}\n", line);
     }
 
-
+    print_liveness(&ir);
 
     //write_dot(ir, "output/liveness.dot".to_string());
 
