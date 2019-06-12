@@ -1,15 +1,12 @@
 extern crate protobuf;
-use std::ops::Deref;
-//use std::fs::File;
-//use std::io::{BufReader};
-//use protobuf::{,Message};
 use judecca::onnx_io::onnx_reader::onnx_read;
-use judecca::liveness::liveness_analysis::{onnx_to_ir, write_dot, liveness_analysis, print_liveness};
+use judecca::liveness::liveness_analysis::{onnx_to_ir, write_dot, liveness_analysis, print_liveness, write_csv};
 
 //protoc --rust_out . onnx.proto で生成されたonnx.rsを読み込む
 
 fn main() {
-    let u = onnx_read("../data/squeezenet/model.onnx");
+//    let u = onnx_read("../data/squeezenet/model.onnx");
+    let u = onnx_read("../data/inception_v2/model.onnx");
 
     println!("producer name: {}", u.get_producer_name());
 
@@ -41,7 +38,8 @@ fn main() {
     }
 
     print_liveness(&ir);
-
-    //write_dot(ir, "output/liveness.dot".to_string());
+//    write_csv(&ir, "output/squeeze.csv".to_string());
+    //write_dot(&ir, "output/inception.dot".to_string());
+    write_csv(&ir, "output/inception.csv".to_string());
 
 }

@@ -9,8 +9,6 @@ use crate::onnx_io::onnx;
 use std::string::ToString;
 use core::borrow::Borrow;
 
-type Link = RefCell<IrNode>;
-
 #[derive(Debug, Clone)]
 pub struct IrNode {
     pub name: String,
@@ -42,21 +40,17 @@ impl IrNode {
 
 }
 
-
-
 type LivenessIr = Vec<RefCell<IrNode>>;
 
 pub fn onnx_to_ir(onnx :&onnx::ModelProto) -> LivenessIr {
     let mut ir :LivenessIr = vec![];
-    let g = onnx.get_graph();
+    let onnx_graph = onnx.get_graph();
     let mut layer_cnt = 0;
     let mut symtbl:HashSet<String> = HashSet::new();
 
-    for onnx_node in g.get_node() {
+    for onnx_node in onnx_graph.get_node() {
         let node_name = format!("{}_{}", onnx_node.get_op_type().to_string(), layer_cnt);
         // output -> def, input -> use
-        print!("onnx_to_ir: {}\n", node_name);
-
         let irnode = IrNode::new(node_name, layer_cnt);
         for output in onnx_node.get_output() {
             irnode.borrow_mut().def_s.insert(output.clone());
@@ -64,35 +58,24 @@ pub fn onnx_to_ir(onnx :&onnx::ModelProto) -> LivenessIr {
         }
 
         //inputに存在しないuseはここでdefにする。
-        let mut extra_def:HashSet<String> = HashSet::new();
-        print!("    inputs = {:?}\n", onnx_node.get_input());
-        print!("    symtbl = {:?}\n", symtbl);
-
+        let mut extra_def_s:HashSet<String> = HashSet::new();
         for input in onnx_node.get_input() {
             irnode.borrow_mut().use_s.insert(input.clone());
             if !symtbl.contains(&input.to_string()) {
-                extra_def.insert(input.clone());
-//                irnode.borrow_mut().def_s.insert(input.clone());
+                extra_def_s.insert(input.clone());
                 symtbl.insert(input.clone());
             }
 
         }
-        for e_def in extra_def {
-            print!("   extra_def {}\n", e_def);
-            irnode.borrow_mut().def_s.insert(e_def);
+        for extra_def in extra_def_s {
+            irnode.borrow_mut().def_s.insert(extra_def);
         }
 
         ir.push(irnode);
-
         layer_cnt = layer_cnt + 1;
-
-//        if layer_cnt > 9 {
-//            break;
-//        }
     }
 
     //make graph
-
     for i in 0 .. ir.len() {
         let outs =  ir[i].borrow().def_s.clone();
         for out in outs {
@@ -118,7 +101,7 @@ fn is_table_same(g0:& LivenessIr, in_s : &Vec<HashSet<String>>, out_s: &Vec<Hash
     assert!(g0.len() == out_s.len());
 
     let mut result:bool = true;
-     print_liveness(&g0);
+//     print_liveness(&g0);
 
     for i in 0 .. g0.len() {
         if g0[i].borrow().in_s != in_s[i] {
@@ -128,8 +111,6 @@ fn is_table_same(g0:& LivenessIr, in_s : &Vec<HashSet<String>>, out_s: &Vec<Hash
             result = false;
         }
     }
-
-//    print!("is_table_same return {}\n", result);
     result
 }
 
@@ -139,8 +120,6 @@ pub fn liveness_analysis(ir: &mut LivenessIr) {
 
     //copy
     let mut first = true;
-
-
     for _i in 0..ir.len() {
         let mut new_use_s:HashSet<String> = HashSet::new();
         //loopをdo while相当にするために、最初にDummyを入れて比較を失敗させる。
@@ -148,38 +127,29 @@ pub fn liveness_analysis(ir: &mut LivenessIr) {
             new_use_s.insert("Dummy".to_string());
             first = false;
         }
-
         in_s_save.push(new_use_s);
         out_s_save.push(HashSet::new())
-
     }
 
-
+    //livness analysis本体
     while !is_table_same(&ir, &in_s_save, &out_s_save) {
-        //print!("loop1\n");
         //ダミーを取り除く
         in_s_save[0].remove(&"Dummy".to_string());
-        //------------------------------------
         //データのコピー
         for i in 0..ir.len() {
             in_s_save[i] = ir[i].borrow().in_s.clone();
             out_s_save[i] = ir[i].borrow().out_s.clone();
 
             let mut diff: HashSet<String> = HashSet::new();
-//            print!("    out_s = {:?}\n", ir[i].borrow().out_s);
-//            print!("    def_s = {:?}\n", ir[i].borrow().def_s);
             for d in ir[i].borrow().out_s.difference(&ir[i].borrow().def_s) {
                 diff.insert(d.clone());
             }
-
-
-//            print!("    diffs = {:?}\n", diff);
             let mut union: HashSet<String> = HashSet::new();
             for u in ir[i].borrow().use_s.union(&diff) {
                 union.insert(u.to_string());
             }
-            //今のノードで定義しているものを除く（重みデータは固定値）
 
+            //今のノードで定義しているものを除く（重みデータは固定値）
             for cur_in in &ir[i].borrow().def_s {
                 union.remove(&cur_in.to_string());
             }
@@ -187,25 +157,13 @@ pub fn liveness_analysis(ir: &mut LivenessIr) {
 
             let mut succ_in_union:HashSet<String> = ir[i].borrow_mut().out_s.clone();
 
-            /*
-            for s in &ir[i].borrow_mut().succ {
-                let idx:usize = *s as usize;
-                let node_s = ir[idx].clone();
-                for succ_in in &node_s.borrow().in_s {
-                    succ_in_union.insert(succ_in.to_string());
-                }
-            }
-            */
             if i < ir.len()-1{
                 for succ_in in &ir[i+1].borrow().in_s {
                     succ_in_union.insert(succ_in.to_string());
                 }
             }
-
             ir[i].borrow_mut().out_s = succ_in_union;
         }
-        //------------------------------------
-//        print!("\n");
     }
 }
 
@@ -213,7 +171,6 @@ pub fn print_liveness(ir: &LivenessIr) {
     print!("--- liveness ---\n");
     for node in ir  {
         let name = &node.borrow().name;
-        let mut succ_str = "".to_string();
 
         let in_s = format!("{:?}", node.borrow().in_s);
         let out_s = format!("{:?}", node.borrow().out_s);
@@ -224,19 +181,39 @@ pub fn print_liveness(ir: &LivenessIr) {
 
 }
 
-pub fn write_dot(_ir:LivenessIr, _file:String) {
-    /*
+pub fn write_dot(ir:&LivenessIr, file:String) {
     let mut writer = BufWriter::new(File::create(file).unwrap());
     writer.write("digraph livness{\n".as_bytes()).unwrap();
     for node in ir {
         let name = &node.borrow().name;
-        for out in &node.borrow().succ {
-            let dst = &out.borrow().name;
+        let out_node = &node.borrow().clone();
+        for out in &out_node.succ {
+            let dst = &ir[*out as usize].borrow().name;
             let line = format!("{} -> {};\n", name, dst);
             writer.write(line.as_bytes()).unwrap();
         }
     }
 
     writer.write("}\n".as_bytes()).unwrap();
-    */
+}
+
+pub fn write_csv(ir:&LivenessIr, file:String) {
+    let mut writer = BufWriter::new(File::create(file).unwrap());
+    writer.write("name, in, out\n".as_bytes()).unwrap();
+
+    for node in ir {
+        let name = &node.borrow().name;
+
+        let mut in_s_line = "".to_string();
+        for in_s in &node.borrow().in_s {
+            in_s_line = format!("{} {}", in_s_line, in_s);
+        }
+        let mut out_s_line = "".to_string();
+        for out_s in &node.borrow().out_s {
+            out_s_line = format!("{} {}", out_s_line, out_s);
+        }
+        let line = format!("{},{},{}\n", name, in_s_line, out_s_line);
+        writer.write(line.as_bytes()).unwrap();
+    }
+
 }

@@ -1,0 +1,67 @@
+name, in, out
+Conv_0,, conv1_1
+Relu_1, conv1_1, conv1_2
+MaxPool_2, conv1_2, pool1_1
+Conv_3, pool1_1, fire2/squeeze1x1_1
+Relu_4, fire2/squeeze1x1_1, fire2/squeeze1x1_2
+Conv_5, fire2/squeeze1x1_2, fire2/expand1x1_1 fire2/squeeze1x1_2
+Relu_6, fire2/expand1x1_1 fire2/squeeze1x1_2, fire2/expand1x1_2 fire2/squeeze1x1_2
+Conv_7, fire2/squeeze1x1_2 fire2/expand1x1_2, fire2/expand3x3_1 fire2/expand1x1_2
+Relu_8, fire2/expand3x3_1 fire2/expand1x1_2, fire2/expand1x1_2 fire2/expand3x3_2
+Concat_9, fire2/expand3x3_2 fire2/expand1x1_2, fire2/concat_1
+Conv_10, fire2/concat_1, fire3/squeeze1x1_1
+Relu_11, fire3/squeeze1x1_1, fire3/squeeze1x1_2
+Conv_12, fire3/squeeze1x1_2, fire3/expand1x1_1 fire3/squeeze1x1_2
+Relu_13, fire3/squeeze1x1_2 fire3/expand1x1_1, fire3/squeeze1x1_2 fire3/expand1x1_2
+Conv_14, fire3/expand1x1_2 fire3/squeeze1x1_2, fire3/expand3x3_1 fire3/expand1x1_2
+Relu_15, fire3/expand1x1_2 fire3/expand3x3_1, fire3/expand3x3_2 fire3/expand1x1_2
+Concat_16, fire3/expand3x3_2 fire3/expand1x1_2, fire3/concat_1
+MaxPool_17, fire3/concat_1, pool3_1
+Conv_18, pool3_1, fire4/squeeze1x1_1
+Relu_19, fire4/squeeze1x1_1, fire4/squeeze1x1_2
+Conv_20, fire4/squeeze1x1_2, fire4/squeeze1x1_2 fire4/expand1x1_1
+Relu_21, fire4/squeeze1x1_2 fire4/expand1x1_1, fire4/squeeze1x1_2 fire4/expand1x1_2
+Conv_22, fire4/expand1x1_2 fire4/squeeze1x1_2, fire4/expand3x3_1 fire4/expand1x1_2
+Relu_23, fire4/expand3x3_1 fire4/expand1x1_2, fire4/expand1x1_2 fire4/expand3x3_2
+Concat_24, fire4/expand3x3_2 fire4/expand1x1_2, fire4/concat_1
+Conv_25, fire4/concat_1, fire5/squeeze1x1_1
+Relu_26, fire5/squeeze1x1_1, fire5/squeeze1x1_2
+Conv_27, fire5/squeeze1x1_2, fire5/expand1x1_1 fire5/squeeze1x1_2
+Relu_28, fire5/expand1x1_1 fire5/squeeze1x1_2, fire5/squeeze1x1_2 fire5/expand1x1_2
+Conv_29, fire5/expand1x1_2 fire5/squeeze1x1_2, fire5/expand1x1_2 fire5/expand3x3_1
+Relu_30, fire5/expand1x1_2 fire5/expand3x3_1, fire5/expand1x1_2 fire5/expand3x3_2
+Concat_31, fire5/expand3x3_2 fire5/expand1x1_2, fire5/concat_1
+MaxPool_32, fire5/concat_1, pool5_1
+Conv_33, pool5_1, fire6/squeeze1x1_1
+Relu_34, fire6/squeeze1x1_1, fire6/squeeze1x1_2
+Conv_35, fire6/squeeze1x1_2, fire6/expand1x1_1 fire6/squeeze1x1_2
+Relu_36, fire6/squeeze1x1_2 fire6/expand1x1_1, fire6/expand1x1_2 fire6/squeeze1x1_2
+Conv_37, fire6/squeeze1x1_2 fire6/expand1x1_2, fire6/expand3x3_1 fire6/expand1x1_2
+Relu_38, fire6/expand3x3_1 fire6/expand1x1_2, fire6/expand1x1_2 fire6/expand3x3_2
+Concat_39, fire6/expand1x1_2 fire6/expand3x3_2, fire6/concat_1
+Conv_40, fire6/concat_1, fire7/squeeze1x1_1
+Relu_41, fire7/squeeze1x1_1, fire7/squeeze1x1_2
+Conv_42, fire7/squeeze1x1_2, fire7/squeeze1x1_2 fire7/expand1x1_1
+Relu_43, fire7/squeeze1x1_2 fire7/expand1x1_1, fire7/squeeze1x1_2 fire7/expand1x1_2
+Conv_44, fire7/squeeze1x1_2 fire7/expand1x1_2, fire7/expand3x3_1 fire7/expand1x1_2
+Relu_45, fire7/expand3x3_1 fire7/expand1x1_2, fire7/expand3x3_2 fire7/expand1x1_2
+Concat_46, fire7/expand3x3_2 fire7/expand1x1_2, fire7/concat_1
+Conv_47, fire7/concat_1, fire8/squeeze1x1_1
+Relu_48, fire8/squeeze1x1_1, fire8/squeeze1x1_2
+Conv_49, fire8/squeeze1x1_2, fire8/expand1x1_1 fire8/squeeze1x1_2
+Relu_50, fire8/expand1x1_1 fire8/squeeze1x1_2, fire8/squeeze1x1_2 fire8/expand1x1_2
+Conv_51, fire8/expand1x1_2 fire8/squeeze1x1_2, fire8/expand1x1_2 fire8/expand3x3_1
+Relu_52, fire8/expand1x1_2 fire8/expand3x3_1, fire8/expand3x3_2 fire8/expand1x1_2
+Concat_53, fire8/expand3x3_2 fire8/expand1x1_2, fire8/concat_1
+Conv_54, fire8/concat_1, fire9/squeeze1x1_1
+Relu_55, fire9/squeeze1x1_1, fire9/squeeze1x1_2
+Conv_56, fire9/squeeze1x1_2, fire9/squeeze1x1_2 fire9/expand1x1_1
+Relu_57, fire9/expand1x1_1 fire9/squeeze1x1_2, fire9/squeeze1x1_2 fire9/expand1x1_2
+Conv_58, fire9/expand1x1_2 fire9/squeeze1x1_2, fire9/expand3x3_1 fire9/expand1x1_2
+Relu_59, fire9/expand3x3_1 fire9/expand1x1_2, fire9/expand3x3_2 fire9/expand1x1_2
+Concat_60, fire9/expand3x3_2 fire9/expand1x1_2, fire9/concat_1
+Dropout_61, fire9/concat_1, fire9/concat_2
+Conv_62, fire9/concat_2, conv10_1
+Relu_63, conv10_1, conv10_2
+GlobalAveragePool_64, conv10_2, pool10_1
+Softmax_65, pool10_1,
