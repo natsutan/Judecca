@@ -11,3 +11,4 @@ judecca/output/output.png
 judecca/output/liveness.dot
 rust_tools/target/debug/
 rust_tools/target/.rustc_info.json
+judecca/.idea/
